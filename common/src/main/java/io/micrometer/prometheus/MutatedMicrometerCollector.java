@@ -47,12 +47,8 @@ class MutatedMicrometerCollector extends Collector {
 
             for (Tag tag : tags) {
                 String tagKey = tag.getKey();
-                if (tagKey.contains(".")) {
-                    String replacedTag = tagKey.replace(".", "_");
-                    keys.add(replacedTag);
-                } else {
-                    keys.add(tag.getKey());
-                }
+                tagKey = tagKey.replace(".", "_").replace("<", "_");
+                keys.add(tagKey);
                 values.add(tag.getValue());
             }
 
